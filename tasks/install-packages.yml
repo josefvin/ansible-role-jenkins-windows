@@ -1,12 +1,13 @@
 ---
+- name: "Set TLS 1.2"
+  win_shell: "[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12"
+
+- name: "Set execution policy"
+  win_shell: Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Force
+
 - name: Ensure cUrl is installed.
   win_chocolatey:
      name: curl
-     state: present
-     
-- name: Ensure Java is installed
-  win_chocolatey:
-     name: jre8
      state: present
      
 - name: Ensure Jenkins is installed.
@@ -14,3 +15,6 @@
      name: jenkins
      state: present
   register: jenkins_install_package_win
+
+- name: "Reset execution policy"
+  win_shell: Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Force

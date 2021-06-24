@@ -60,8 +60,10 @@
   when: (jenkins_install_package_win is defined and jenkins_install_package_win.changed)
 
 - name: Immediately restart Jenkins after all changes.
-  win_service: name=jenkins state=restarted
-  regiser: jenkins_started
+  win_service: 
+    name: jenkins 
+    state: restarted
+  register: jenkins_started
 
 - name: Remove Jenkins security init scripts after first startup.
   win_file:
