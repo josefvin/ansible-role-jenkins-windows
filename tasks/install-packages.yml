@@ -17,4 +17,4 @@
   register: jenkins_install_package_win
 
 - name: "Reset execution policy"
-  win_shell: Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Force
+  win_shell: Set-ExecutionPolicy RemoteSigned -Scope Process -Force
